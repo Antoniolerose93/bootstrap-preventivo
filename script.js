@@ -7,9 +7,9 @@ const inputSurname = formElement.querySelector('#surname')
 const inputEmail = formElement.querySelector('#email')
 const lavoroSelezionato = formElement.querySelector('#lavoro')
 const codiceSconto = formElement.querySelector('#coupon')
-const prezzoOutputElement = document.querySelector('#prezzo')
+const prezzoOutputElement = formElement.querySelector('#prezzo')
 
-console.log(formElement, inputName, inputSurname, inputEmail, lavoroSelezionato, codiceSconto)
+console.log(formElement, inputName, inputSurname, inputEmail, lavoroSelezionato, codiceSconto, prezzoOutputElement)
 
 
 // evento submit
@@ -60,44 +60,3 @@ if (codiceScontovalido.includes(scontoValue)) {
 
 
 
-
-
-
-// const backend = 20.50 * oreRichieste
-// const frontend = 15.30 * oreRichieste
-// const analisi = 33.60 * oreRichieste
-// console.log(backend, frontend, analisi)
-
-// let prezzoLavoro = 0
-
-// if (lavoroValue = backend ) {
-// 	prezzoLavoro = backend 
-// } else if (lavoroValue = frontend){
-// 	prezzoLavoro = frontend
-// } else if (lavoroValue = analisi) {
-// 	prezzoLavoro = analisi
-// }
-
-//verifico che l'utente abbia un codice sconto valido
-
-
-
-//let prezzoOrario;
-
-// if (lavoroSelezionato === 'backend') {
-//   prezzoOrario = 20.50;
-// } else if (lavoroSelezionato === 'frontend') {
-//   prezzoOrario = 15.30;
-// } else if (lavoroSelezionato === 'analisi') {
-//   prezzoOrario = 33.60;
-// } else {
-//   prezzoOrario = 0; // lavoro non valido
-// }
-
-// let prezzoFinale = prezzoOrario * oreRichieste;
-
-// if (codiciScontoValidi.includes(codiceSconto)) {
-//   prezzoFinale *= 0.75; // Applica sconto del 25%
-// }
-
-// console.log(`Prezzo finale: €${prezzoFinale.toFixed(2)}`);
