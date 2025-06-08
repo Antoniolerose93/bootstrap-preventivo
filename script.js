@@ -8,6 +8,7 @@ const inputSurname = formElement.querySelector('#surname')
 const inputEmail = formElement.querySelector('#email')
 const lavoroSelezionato = formElement.querySelector('#lavoro')
 const codiceSconto = formElement.querySelector('#coupon')
+const couponFeedbackElement = formElement.querySelector('#coupon-result')
 const prezzoOutputElement = formElement.querySelector('#prezzo')
 
 console.log(formElement, inputName, inputSurname, inputEmail, lavoroSelezionato, codiceSconto, prezzoOutputElement)
@@ -24,9 +25,9 @@ formElement.addEventListener('submit', function (event) {
 
 //leggo il valore inserito nel codice sconto
 	let scontoValue = codiceSconto.value
-	console.log(scontoValue)
+	console.log(scontoValue, 'codice sconto inserito')
 
-//imposto il prezzo orario, il prezzo base e e calcolo il prezzo finale dei lavori
+//imposto il prezzo orario, il prezzo base e e calcolo il prezzo di listino dei lavori
 	const oreRichieste = 10
 
 	let prezzoOrario;
@@ -42,22 +43,31 @@ formElement.addEventListener('submit', function (event) {
 	}	
 
 	let prezzoBase = prezzoOrario * oreRichieste
+	console.log(prezzoBase, 'Prezzo di listino')
 	
-	let prezzoFinale;
 
 //stabilisco gli sconti validi
 	const codiceScontovalido = ['YHDNU32', 'JANJC63', 'PWKCN25', 'SJDPO96', 'POCIE24']
+	let prezzoFinale;
 
-
+//calcolo il prezzo definitivo alla luce del codice sconto inserito dall'utente
 	if (codiceScontovalido.includes(scontoValue)) {
     	prezzoFinale = prezzoBase * 0.75;
-		prezzoOutputElement.innerHTML = `${prezzoFinale.toFixed(2)} &euro; - Sconto applicato 25%;` 
+		prezzoOutputElement.innerHTML = `${prezzoFinale.toFixed(2)} &euro;`
+		couponFeedbackElement.innerHTML = 'Codice sconto valido. Hai diritto al 25% di sconto'; 
 	
 	}  else {
 		prezzoFinale = prezzoBase
-		prezzoOutputElement.innerHTML = `${prezzoFinale.toFixed(2)} &euro; - Codice sconto non valido. Non hai diritto ad uno sconto;`
-		
+		prezzoOutputElement.innerHTML = `${prezzoFinale.toFixed(2)} &euro;` 
+		couponFeedbackElement.innerHTML = 'Codice sconto non valido';
 	} 
+		console.log(prezzoFinale, 'Prezzo applicato')
+		
+//formatto il prezzo 
+		const formattaPrezzo = prezzoFinale.toFixed(2)
+		const [cifreIntere, cifreDecimali] = formattaPrezzo.split(".");
+		prezzoOutputElement.innerHTML = `<strong>${cifreIntere}</strong>.${cifreDecimali}&euro;`
+
 
 })
 
